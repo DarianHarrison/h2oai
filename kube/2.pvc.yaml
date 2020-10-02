@@ -11,5 +11,5 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      storage: 256Gi
+      storage: 100Gi
   storageClassName: default
