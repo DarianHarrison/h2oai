@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: h2o
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: steam
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: steam-role
+rules:
+  - apiGroups: ["", "apps", "storage.k8s.io"]
+    resources: ["namespaces", "pods", "pods/log", "deployments", "secrets", "services", "persistentvolumeclaims", "persistentvolumes", "events", "configmaps", "storageclasses"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: steam-role-binding
+subjects:
+  - kind: ServiceAccount
+    namespace: h2o
+    name: steam
+roleRef:
+  kind: ClusterRole
+  name: steam-role
+  apiGroup: rbac.authorization.k8s.io      

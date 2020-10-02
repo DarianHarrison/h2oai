@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: enterprise-steam-claim
+  namespace: h2o
+  annotations:
+    pv.beta.kubernetes.io/gid: "955"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 256Gi
+  storageClassName: default
