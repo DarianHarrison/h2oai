@@ -21,7 +21,6 @@ spec:
       containers:
         - name: enterprise-steam
           image: h2oai/enterprise-steam:1.7.5
-          imagePullPolicy: IfNotPresent
           resources:
             requests:
               cpu: 4
