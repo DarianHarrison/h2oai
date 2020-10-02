@@ -13,7 +13,7 @@ sh install
 
 2. watch deployment and sercies come up
 ```
-kubectl get svc,deployments -n h2o
+watch kubectl get all -n h2o
 ```
 
 3. (optional) to uninstall
