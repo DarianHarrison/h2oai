@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: enterprise-steam-claim
-  namespace: h2oai2
+  namespace: h2oai3
   annotations:
     pv.beta.kubernetes.io/gid: "955"
 spec:
