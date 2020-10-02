@@ -6,7 +6,7 @@ metadata:
   labels:
     run: enterprise-steam
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - port: 9555
       protocol: TCP
