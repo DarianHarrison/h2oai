@@ -6,49 +6,10 @@ metadata:
   labels:
     run: enterprise-steam
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - port: 9555
       protocol: TCP
       name: https
   selector:
     run: enterprise-steam
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: enterprise-steam
-  namespace: h2o
-spec:
-  selector:
-    matchLabels:
-      run: enterprise-steam
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        run: enterprise-steam
-    spec:
-      serviceAccountName: steam
-      securityContext:
-        runAsUser: 955
-        runAsGroup: 955
-        fsGroup: 955
-      containers:
-        - name: enterprise-steam
-          image: h2oai/enterprise-steam:1.7.5
-            resources:
-              requests:
-                cpu: 4
-                memory: 32Gi
-          ports:
-            - containerPort: 9555
-          volumeMounts:
-            - mountPath: /opt/h2oai/steam/data
-              name: enterprise-steam-data
-          securityContext:
-            allowPrivilegeEscalation: false
-      volumes:
-        - name: enterprise-steam-data
-          persistentVolumeClaim:
-            claimName: enterprise-steam-claim    
